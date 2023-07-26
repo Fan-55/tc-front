@@ -11,6 +11,7 @@ export const useLoginStore = defineStore('login', {
     // Getter to access the login state
     isLoggedIn: state => state._isLoggedIn,
     role: state => state._role,
+    userId: state => state._userId,
   },
   actions: {
     // Action to update the login state
