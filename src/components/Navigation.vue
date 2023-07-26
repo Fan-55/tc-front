@@ -6,6 +6,11 @@
         <router-link :to="{ name: 'Main' }"><h1>Happy Dog</h1></router-link>
       </div>
       <ul class="nav-routes">
+        <router-link
+          :to="{ name: 'SellerCenter' }"
+          v-if="loginStore.role === 'seller'"
+          >Seller Center</router-link
+        >
         <router-link :to="{ name: 'Cart' }" v-if="loginStore.role === 'buyer'"
           >Cart</router-link
         >
