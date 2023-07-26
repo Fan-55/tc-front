@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5000/v1'
+const baseURL = 'https://tcback.onrender.com/v1'
 
 const getProducts = async (options = {}) => {
   const { productName, minPrice, maxPrice, sellerId } = options;
