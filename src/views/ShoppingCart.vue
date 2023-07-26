@@ -38,10 +38,12 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import router from "../router";
-import checkout from "../composables/checkout";
 import "@fortawesome/fontawesome-free/css/all.css";
 
+import getDataServices from "../DataServices/DataServices";
+import router from "../router";
+
+const dataServices = getDataServices();
 const cartItems = ref(JSON.parse(localStorage.getItem("cartItems")) || []);
 
 const getTotal = computed(() => {
@@ -66,7 +68,7 @@ const removeItem = (index) => {
 
 const onCheckout = async () => {
   localStorage.setItem("cartItems", JSON.stringify([]));
-  await checkout(cartItems.value);
+  await dataServices.checkout(cartItems.value);
   router.push("/");
   return;
 };

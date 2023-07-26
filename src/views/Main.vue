@@ -37,8 +37,10 @@
 
 <script setup>
 import { onMounted, ref, reactive } from "vue";
-import getProducts from "../composables/getProducts";
 
+import getDataServices from "../DataServices/DataServices";
+
+const dataServices = getDataServices();
 const products = ref([]);
 const search = reactive({
   productName: "",
@@ -69,7 +71,7 @@ const addToCart = (product) => {
 };
 
 const onSearchByPrice = async () => {
-  const searchedProducts = await getProducts({
+  const searchedProducts = await dataServices.getProducts({
     productName: search.productName,
     minPrice: minPrice.value,
     maxPrice: maxPrice.value,
@@ -86,14 +88,14 @@ const onSearch = async () => {
   }
   search.isInvalid = false;
   search.errMsg = "";
-  const searchedProducts = await getProducts({
+  const searchedProducts = await dataServices.getProducts({
     productName: search.productName,
   });
   products.value = searchedProducts;
 };
 
 onMounted(async () => {
-  const browsedProducts = await getProducts();
+  const browsedProducts = await dataServices.getProducts();
   products.value = browsedProducts;
 });
 </script>

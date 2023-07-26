@@ -17,7 +17,7 @@
         <div class="item-info">
           <span class="item-name">{{ product.name }}</span>
           <span class="item-description">{{
-            product.description.slice(0, 50) + "..."
+            product.description?.slice(0, 50) + "..."
           }}</span>
           <span class="item-price">${{ product.price }}</span>
         </div>
@@ -41,18 +41,18 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-
-import router from "../router";
-import checkout from "../composables/checkout";
-import { useLoginStore } from "../store";
 import "@fortawesome/fontawesome-free/css/all.css";
-import getProducts from "../composables/getProducts";
 
+import getDataServices from "../DataServices/DataServices";
+import router from "../router";
+import { useLoginStore } from "../store";
+
+const dataServices = getDataServices();
 const products = ref([]);
 
 onMounted(async () => {
   const loginStore = useLoginStore();
-  const browsedProducts = await getProducts({ userId: loginStore.userId });
+  const browsedProducts = await dataServices.getProducts({ userId: loginStore.userId });
   products.value = browsedProducts;
 });
 </script>

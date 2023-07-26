@@ -1,6 +1,6 @@
 <template>
   <div class="product-details">
-    <form @submit.prevent="saveChanges" class="mt-4">
+    <form @submit.prevent="onFormSubmit" class="mt-4">
       <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
         <input
@@ -48,7 +48,7 @@
           id="description"
         ></textarea>
       </div>
-      <button type="submit" class="btn btn-primary" @click="onFormSubmit">
+      <button type="submit" class="btn btn-primary">
         Submit
       </button>
     </form>
@@ -59,15 +59,16 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import addProduct from "../composables/addProduct";
+import getDataServices from "../DataServices/DataServices";
 import { useLoginStore } from "../store";
 
+const dataServices = getDataServices();
 const router = useRouter();
 const loginStore = useLoginStore();
 const product = ref({ sellerId: loginStore.userId });
 
 const onFormSubmit = async () => {
-  await addProduct(product.value);
+  await dataServices.addProduct(product.value);
   router.push("/seller-center");
 };
 </script>

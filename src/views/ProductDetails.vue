@@ -53,7 +53,9 @@
         ></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary" @click="onFormSubmit">Save Changes</button>
+      <button type="submit" class="btn btn-primary" @click="onFormSubmit">
+        Save Changes
+      </button>
     </form>
   </div>
 </template>
@@ -62,23 +64,23 @@
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import getProductById from "../composables/getProductById";
-import editProduct from '../composables/editProduct';
+import getDataServices from "../DataServices/DataServices";
 
+const dataServices = getDataServices();
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
 const editedProduct = ref({});
 
 onMounted(async () => {
-  const foundProduct = await getProductById(id);
+  const foundProduct = await dataServices.getProductById(id);
   editedProduct.value = foundProduct;
 });
 
 const onFormSubmit = async () => {
-  await editProduct(editedProduct.value);
-  router.push('/seller-center');
-}
+  await dataServices.editProduct(editedProduct.value);
+  router.push("/seller-center");
+};
 </script>
 
 <style lang="scss">

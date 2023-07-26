@@ -34,17 +34,18 @@
 <script setup>
 import { ref } from "vue";
 
-import login from "../composables/login";
+import getDataServices from "../DataServices/DataServices";
 import router from "../router";
 import { useLoginStore } from "../store";
 
+const dataServices = getDataServices();
 const loginStore = useLoginStore();
 const role = ref("buyer");
 const username = ref("");
 const password = ref("");
 
 const onSubmit = async () => {
-  const loginResult = await login(username.value, password.value, role.value);
+  const loginResult = await dataServices.login(username.value, password.value, role.value);
   if (loginResult.token) {
     localStorage.setItem("token", loginResult.token);
     loginStore.setLoggedIn(true);
