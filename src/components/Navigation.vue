@@ -17,7 +17,13 @@
         <router-link :to="{ name: 'Login' }" v-if="!loginStore.isLoggedIn"
           >Login</router-link
         >
-        <button v-if="loginStore.isLoggedIn" @click="logout" class="btn btn-link">Logout</button>
+        <button
+          v-if="loginStore.isLoggedIn"
+          @click="logout"
+          class="btn btn-link"
+        >
+          Logout
+        </button>
       </ul>
     </nav>
   </header>
@@ -25,7 +31,7 @@
 
 <script setup>
 import { inject } from "vue";
-
+import router from "../router";
 import { useLoginStore } from "../store";
 const loginStore = useLoginStore();
 
@@ -34,6 +40,8 @@ const logout = () => {
   loginStore.setLoggedIn(false);
   loginStore.setUserId(null);
   loginStore.setToken("");
+  loginStore.setRole("buyer");
+  router.push("/");
 };
 </script>
 
