@@ -44,7 +44,6 @@ import { computed, onMounted, ref } from "vue";
 import "@fortawesome/fontawesome-free/css/all.css";
 
 import getDataServices from "../DataServices/DataServices";
-import router from "../router";
 import { useLoginStore } from "../store";
 
 const dataServices = getDataServices();

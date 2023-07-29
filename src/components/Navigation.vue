@@ -31,8 +31,10 @@
 
 <script setup>
 import { inject } from "vue";
-import router from "../router";
+import { useRouter } from "vue-router";
+
 import { useLoginStore } from "../store";
+const router = useRouter();
 const loginStore = useLoginStore();
 
 const logout = () => {

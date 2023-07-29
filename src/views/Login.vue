@@ -33,13 +33,14 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 import getDataServices from "../DataServices/DataServices";
-import router from "../router";
 import { useLoginStore } from "../store";
 
 const dataServices = getDataServices();
 const loginStore = useLoginStore();
+const router = useRouter();
 const role = ref("buyer");
 const username = ref("");
 const password = ref("");

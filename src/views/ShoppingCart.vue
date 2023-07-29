@@ -38,11 +38,12 @@
 
 <script setup>
 import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 import "@fortawesome/fontawesome-free/css/all.css";
 
 import getDataServices from "../DataServices/DataServices";
-import router from "../router";
 
+const router = useRouter();
 const dataServices = getDataServices();
 const cartItems = ref(JSON.parse(localStorage.getItem("cartItems")) || []);
 
