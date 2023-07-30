@@ -49,6 +49,8 @@ const onSubmit = async () => {
   const loginResult = await dataServices.login(username.value, password.value, role.value);
   if (loginResult.token) {
     localStorage.setItem("token", loginResult.token);
+    localStorage.setItem("userId", loginResult.userId);
+    localStorage.setItem("role", role.value);
     loginStore.setLoggedIn(true);
     loginStore.setUserId(loginResult.userId);
     loginStore.setToken(loginResult.token);

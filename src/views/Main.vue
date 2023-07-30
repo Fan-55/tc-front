@@ -14,9 +14,11 @@
 
     <!-- #region range slider -->
     <div class="range">
-      <input type="text" v-model="minPrice" />
-      <input type="text" v-model="maxPrice" />
-      <button @click="onSearchByPrice">Apply</button>
+      <span>Price range</span>
+      <input type="text" class="price-input" v-model="minPrice" />
+      <span> ~ </span>
+      <input type="text" class="price-input" v-model="maxPrice" />
+      <button @click="onSearchByPrice" class="btn btn-primary m-1">Apply</button>
     </div>
     <!-- #endregion -->
 
@@ -101,6 +103,15 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+.range {
+  display: flex;
+  align-items: center;
+}
+.price-input {
+  border-radius: 5px;
+  border: 1px solid #acacac;
+}
+
 // region search bar
 .search-bar {
   margin: 20px 0;
@@ -145,7 +156,10 @@ onMounted(async () => {
 // endregion
 
 // region range slider
-
+.range {
+  display: flex;
+  justify-content: flex-start;
+}
 // endregion
 
 .product-list {
